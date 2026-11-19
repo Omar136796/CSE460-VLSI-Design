@@ -1,0 +1,44 @@
+USER SYMBOL by DSCH 2.7a
+DATE 27/02/2026 12:38:27 pm
+SYM  #pos_D_Latch
+BB(0,0,40,30)
+TITLE 10 -2  #pos_D_Latch
+MODEL 6000
+REC(5,5,30,20)
+PIN(0,20,0.00,0.00)CLK
+PIN(0,10,0.00,0.00)D
+PIN(40,10,2.00,1.00)Q
+PIN(40,20,2.00,1.00)nQ
+LIG(0,20,5,20)
+LIG(0,10,5,10)
+LIG(35,10,40,10)
+LIG(35,20,40,20)
+LIG(5,5,5,25)
+LIG(5,5,35,5)
+LIG(35,5,35,25)
+LIG(35,25,5,25)
+VLG module pos_D_Latch( CLK,D,Q,nQ);
+VLG  input CLK,D;
+VLG  output Q,nQ;
+VLG  wire w8,w9,w10,w11;
+VLG  not #(34) inverter(w6,D);
+VLG  nmos #(12) nmos_2_1(w8,vss,nQ); //  
+VLG  nmos #(47) nmos_2_2(Q,w8,w1); //  
+VLG  pmos #(47) pmos_2_3(Q,vdd,w1); //  
+VLG  pmos #(47) pmos_2_4(Q,vdd,nQ); //  
+VLG  nmos #(12) nmos_2_5(w9,vss,w4); //  
+VLG  nmos #(47) nmos_2_6(nQ,w9,Q); //  
+VLG  pmos #(47) pmos_2_7(nQ,vdd,Q); //  
+VLG  pmos #(47) pmos_2_8(nQ,vdd,w4); //  
+VLG  nmos #(12) nmos_2_9(w10,vss,w6); //  
+VLG  nmos #(40) nmos_2_10(w4,w10,CLK); //  
+VLG  pmos #(40) pmos_2_11(w4,vdd,CLK); //  
+VLG  pmos #(40) pmos_2_12(w4,vdd,w6); //  
+VLG  nmos #(12) nmos_2_13(w11,vss,CLK); //  
+VLG  nmos #(40) nmos_2_14(w1,w11,D); //  
+VLG  pmos #(40) pmos_2_15(w1,vdd,D); //  
+VLG  pmos #(40) pmos_2_16(w1,vdd,CLK); //  
+VLG  nmos #(30) nmos_in17(w6,vss,D); //  
+VLG  pmos #(30) pmos_in18(w6,vdd,D); //  
+VLG endmodule
+FSYM

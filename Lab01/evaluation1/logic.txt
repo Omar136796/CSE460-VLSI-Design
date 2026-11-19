@@ -1,0 +1,38 @@
+// DSCH 2.7a
+// 28/02/2026 11:25:45 am
+// C:\CSE460 Softwares\Export dsch2\Omar Faruk\eval1\logic.sch
+
+module logic( A,B,C,D,CLK,Q,nQ);
+ input A,B,C,D,CLK;
+ output Q,nQ;
+ wire w13;
+ nmos #(38) nmos(w3,w2,A); // 1.0u 0.12u
+ nmos #(24) nmos(w2,vss,D); // 1.0u 0.12u
+ nmos #(24) nmos(w2,vss,C); // 1.0u 0.12u
+ nmos #(38) nmos(w3,w2,B); // 1.0u 0.12u
+ pmos #(10) pmos(w7,vdd,A); // 2.0u 0.12u
+ pmos #(38) pmos(w3,w7,B); // 2.0u 0.12u
+ pmos #(10) pmos(w8,vdd,C); // 2.0u 0.12u
+ pmos #(38) pmos(w3,w8,D); // 2.0u 0.12u
+ pmos #(17) pmos(w9,vdd,w3); // 2.0u 0.12u
+ nmos #(17) nmos(w9,vss,w3); // 1.0u 0.12u
+ nmos #(17) nmos_La1(w13,w9,CLK); //  
+ not #(17) inv_La2(nQ,w13);
+ not #(17) inv_La3(Q,nQ);
+ pmos #(17) pmos_La4(w13,Q,CLK); //  
+endmodule
+
+// Simulation parameters in Verilog Format
+always
+#1000 A=~A;
+#2000 B=~B;
+#4000 C=~C;
+#8000 D=~D;
+#1000 CLK=~CLK;
+
+// Simulation parameters
+// A CLK 10 10
+// B CLK 20 20
+// C CLK 40 40
+// D CLK 80 80
+// CLK CLK 10.000 10.000

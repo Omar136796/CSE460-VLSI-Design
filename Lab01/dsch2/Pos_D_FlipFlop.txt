@@ -1,0 +1,60 @@
+// DSCH 2.7a
+// 28/02/2026 9:23:34 am
+// C:\CSE460 Softwares\Export dsch2\Omar Faruk\Pos_D_FlipFlop.sch
+
+module Pos_D_FlipFlop( CLK,D,Q,nQ);
+ input CLK,D;
+ output Q,nQ;
+ wire w8,w9,w10,w11,w12,w13,w14,w15;
+ wire w16,w17,w18,w19,w20,w21;
+ not #(48) inverter(w2,CLK);
+ not #(45) inverter_po1(w8,D);
+ nmos #(13) nmos_2_1_po2(w9,vss,w5); //  
+ nmos #(87) nmos_2_2_po3(w4,w9,w10); //  
+ pmos #(87) pmos_2_3_po4(w4,vdd,w10); //  
+ pmos #(87) pmos_2_4_po5(w4,vdd,w5); //  
+ nmos #(13) nmos_2_5_po6(w12,vss,w11); //  
+ nmos #(52) nmos_2_6_po7(w5,w12,w4); //  
+ pmos #(52) pmos_2_7_po8(w5,vdd,w4); //  
+ pmos #(52) pmos_2_8_po9(w5,vdd,w11); //  
+ nmos #(13) nmos_2_9_po10(w13,vss,w8); //  
+ nmos #(48) nmos_2_10_po11(w11,w13,w2); //  
+ pmos #(48) pmos_2_11_po12(w11,vdd,w2); //  
+ pmos #(48) pmos_2_12_po13(w11,vdd,w8); //  
+ nmos #(13) nmos_2_13_po14(w14,vss,w2); //  
+ nmos #(48) nmos_2_14_po15(w10,w14,D); //  
+ pmos #(48) pmos_2_15_po16(w10,vdd,D); //  
+ pmos #(48) pmos_2_16_po17(w10,vdd,w2); //  
+ nmos #(43) nmos_in17_po18(w8,vss,D); //  
+ pmos #(43) pmos_in18_po19(w8,vdd,D); //  
+ not #(45) inverter_po20(w15,w4);
+ nmos #(13) nmos_2_1_po21(w16,vss,nQ); //  
+ nmos #(59) nmos_2_2_po22(Q,w16,w17); //  
+ pmos #(59) pmos_2_3_po23(Q,vdd,w17); //  
+ pmos #(59) pmos_2_4_po24(Q,vdd,nQ); //  
+ nmos #(13) nmos_2_5_po25(w19,vss,w18); //  
+ nmos #(59) nmos_2_6_po26(nQ,w19,Q); //  
+ pmos #(59) pmos_2_7_po27(nQ,vdd,Q); //  
+ pmos #(59) pmos_2_8_po28(nQ,vdd,w18); //  
+ nmos #(13) nmos_2_9_po29(w20,vss,w15); //  
+ nmos #(48) nmos_2_10_po30(w18,w20,CLK); //  
+ pmos #(48) pmos_2_11_po31(w18,vdd,CLK); //  
+ pmos #(48) pmos_2_12_po32(w18,vdd,w15); //  
+ nmos #(13) nmos_2_13_po33(w21,vss,CLK); //  
+ nmos #(48) nmos_2_14_po34(w17,w21,w4); //  
+ pmos #(48) pmos_2_15_po35(w17,vdd,w4); //  
+ pmos #(48) pmos_2_16_po36(w17,vdd,CLK); //  
+ nmos #(43) nmos_in17_po37(w15,vss,w4); //  
+ pmos #(43) pmos_in18_po38(w15,vdd,w4); //  
+ nmos #(44) nmos_in39(w2,vss,CLK); //  
+ pmos #(44) pmos_in40(w2,vdd,CLK); //  
+endmodule
+
+// Simulation parameters in Verilog Format
+always
+#1000 CLK=~CLK;
+#1000 D=~D;
+
+// Simulation parameters
+// CLK CLK 10.000 10.000
+// D CLK 10 10

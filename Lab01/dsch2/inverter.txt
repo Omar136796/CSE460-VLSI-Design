@@ -1,0 +1,17 @@
+// DSCH 2.7a
+// 27/02/2026 11:02:39 am
+// C:\CSE460 Softwares\Export dsch2\Omar Faruk\inverter.sch
+
+module inverter( A,A');
+ input A;
+ output A';
+ nmos #(17) nmos(A',vss,A); // 1.0u 0.12u
+ pmos #(17) pmos(A',vdd,A); // 2.0u 0.12u
+endmodule
+
+// Simulation parameters in Verilog Format
+always
+#1000 A=~A;
+
+// Simulation parameters
+// A CLK 10 10

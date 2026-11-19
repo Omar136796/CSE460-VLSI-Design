@@ -1,0 +1,21 @@
+// DSCH 2.7a
+// 27/02/2026 11:24:52 am
+// C:\CSE460 Softwares\Export dsch2\Omar Faruk\2_input_NAND.sch
+
+module 2_input_NAND( A,B,Y);
+ input A,B;
+ output Y;
+ nmos #(10) nmos(w2,vss,B); // 1.0u 0.12u
+ nmos #(24) nmos(Y,w2,A); // 1.0u 0.12u
+ pmos #(24) pmos(Y,vdd,A); // 2.0u 0.12u
+ pmos #(24) pmos(Y,vdd,B); // 2.0u 0.12u
+endmodule
+
+// Simulation parameters in Verilog Format
+always
+#1000 A=~A;
+#2000 B=~B;
+
+// Simulation parameters
+// A CLK 10 10
+// B CLK 20 20

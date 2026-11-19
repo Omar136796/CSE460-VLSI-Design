@@ -1,0 +1,64 @@
+// DSCH 2.7a
+// 28/02/2026 9:38:17 am
+// C:\CSE460 Softwares\Export dsch2\Omar Faruk\pos_flipflop_rst.sch
+
+module pos_flipflop_rst( D,resetn,CLK,Q,nQ);
+ input D,resetn,CLK;
+ output Q,nQ;
+ wire w7,w8,w9,w10,w11,w12,w13,w14;
+ wire w15,w16,w17,w18,w19,w20,w21,w22;
+ wire w23;
+ and #(44) and2(w2,resetn,D);
+ not #(66) inverter_Po1(w7,CLK);
+ not #(51) inverter_po1_Po2(w8,w2);
+ nmos #(14) nmos_2_1_po2_Po3(w10,vss,w9); //  
+ nmos #(107) nmos_2_2_po3_Po4(w12,w10,w11); //  
+ pmos #(107) pmos_2_3_po4_Po5(w12,vdd,w11); //  
+ pmos #(107) pmos_2_4_po5_Po6(w12,vdd,w9); //  
+ nmos #(14) nmos_2_5_po6_Po7(w14,vss,w13); //  
+ nmos #(54) nmos_2_6_po7_Po8(w9,w14,w12); //  
+ pmos #(54) pmos_2_7_po8_Po9(w9,vdd,w12); //  
+ pmos #(54) pmos_2_8_po9_Po10(w9,vdd,w13); //  
+ nmos #(14) nmos_2_9_po10_Po11(w15,vss,w8); //  
+ nmos #(52) nmos_2_10_po11_Po12(w13,w15,w7); //  
+ pmos #(52) pmos_2_11_po12_Po13(w13,vdd,w7); //  
+ pmos #(52) pmos_2_12_po13_Po14(w13,vdd,w8); //  
+ nmos #(14) nmos_2_13_po14_Po15(w16,vss,w7); //  
+ nmos #(52) nmos_2_14_po15_Po16(w11,w16,w2); //  
+ pmos #(52) pmos_2_15_po16_Po17(w11,vdd,w2); //  
+ pmos #(52) pmos_2_16_po17_Po18(w11,vdd,w7); //  
+ nmos #(50) nmos_in17_po18_Po19(w8,vss,w2); //  
+ pmos #(50) pmos_in18_po19_Po20(w8,vdd,w2); //  
+ not #(51) inverter_po20_Po21(w17,w12);
+ nmos #(14) nmos_2_1_po21_Po22(w18,vss,nQ); //  
+ nmos #(65) nmos_2_2_po22_Po23(Q,w18,w19); //  
+ pmos #(65) pmos_2_3_po23_Po24(Q,vdd,w19); //  
+ pmos #(65) pmos_2_4_po24_Po25(Q,vdd,nQ); //  
+ nmos #(14) nmos_2_5_po25_Po26(w21,vss,w20); //  
+ nmos #(65) nmos_2_6_po26_Po27(nQ,w21,Q); //  
+ pmos #(65) pmos_2_7_po27_Po28(nQ,vdd,Q); //  
+ pmos #(65) pmos_2_8_po28_Po29(nQ,vdd,w20); //  
+ nmos #(14) nmos_2_9_po29_Po30(w22,vss,w17); //  
+ nmos #(52) nmos_2_10_po30_Po31(w20,w22,CLK); //  
+ pmos #(52) pmos_2_11_po31_Po32(w20,vdd,CLK); //  
+ pmos #(52) pmos_2_12_po32_Po33(w20,vdd,w17); //  
+ nmos #(14) nmos_2_13_po33_Po34(w23,vss,CLK); //  
+ nmos #(52) nmos_2_14_po34_Po35(w19,w23,w12); //  
+ pmos #(52) pmos_2_15_po35_Po36(w19,vdd,w12); //  
+ pmos #(52) pmos_2_16_po36_Po37(w19,vdd,CLK); //  
+ nmos #(50) nmos_in17_po37_Po38(w17,vss,w12); //  
+ pmos #(50) pmos_in18_po38_Po39(w17,vdd,w12); //  
+ nmos #(64) nmos_in39_Po40(w7,vss,CLK); //  
+ pmos #(64) pmos_in40_Po41(w7,vdd,CLK); //  
+endmodule
+
+// Simulation parameters in Verilog Format
+always
+#1000 D=~D;
+#2000 resetn=~resetn;
+#4000 CLK=~CLK;
+
+// Simulation parameters
+// D CLK 10 10
+// resetn CLK 20 20
+// CLK CLK 40 40

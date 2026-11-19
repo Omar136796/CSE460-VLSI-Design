@@ -1,0 +1,37 @@
+// DSCH 2.7a
+// 27/02/2026 12:38:27 pm
+// C:\CSE460 Softwares\Export dsch2\Omar Faruk\pos_D_Latch.sch
+
+module pos_D_Latch( CLK,D,Q,nQ);
+ input CLK,D;
+ output Q,nQ;
+ wire w8,w9,w10,w11;
+ not #(34) inverter(w6,D);
+ nmos #(12) nmos_2_1(w8,vss,nQ); //  
+ nmos #(47) nmos_2_2(Q,w8,w1); //  
+ pmos #(47) pmos_2_3(Q,vdd,w1); //  
+ pmos #(47) pmos_2_4(Q,vdd,nQ); //  
+ nmos #(12) nmos_2_5(w9,vss,w4); //  
+ nmos #(47) nmos_2_6(nQ,w9,Q); //  
+ pmos #(47) pmos_2_7(nQ,vdd,Q); //  
+ pmos #(47) pmos_2_8(nQ,vdd,w4); //  
+ nmos #(12) nmos_2_9(w10,vss,w6); //  
+ nmos #(40) nmos_2_10(w4,w10,CLK); //  
+ pmos #(40) pmos_2_11(w4,vdd,CLK); //  
+ pmos #(40) pmos_2_12(w4,vdd,w6); //  
+ nmos #(12) nmos_2_13(w11,vss,CLK); //  
+ nmos #(40) nmos_2_14(w1,w11,D); //  
+ pmos #(40) pmos_2_15(w1,vdd,D); //  
+ pmos #(40) pmos_2_16(w1,vdd,CLK); //  
+ nmos #(30) nmos_in17(w6,vss,D); //  
+ pmos #(30) pmos_in18(w6,vdd,D); //  
+endmodule
+
+// Simulation parameters in Verilog Format
+always
+#1000 CLK=~CLK;
+#2000 D=~D;
+
+// Simulation parameters
+// CLK CLK 10 10
+// D CLK 20 20
