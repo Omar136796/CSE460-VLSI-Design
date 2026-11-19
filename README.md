@@ -15,9 +15,9 @@ assignment or lecture slides.
 |-----|-------|------|
 | [Lab 01](#lab-01--cmos-circuit-design-in-dsch2) | CMOS circuit design | DSCH2 |
 | [Lab 02](#lab-02--introduction-to-verilog-hdl) | Gate-level Verilog | Quartus |
-| [Lab 03](#lab-03--multiplexers-encoders-decoders-and-counters) | Behavioral Verilog: MUX, encoders, counters | Quartus |
+| [Lab 03](#lab-03--multiplexers-encoders-decoders-and-counters) | Behavioral Verilog: MUX, encoders, decoders, counters | Quartus |
 | [Lab 04](#lab-04--finite-state-machines) | Moore finite state machine | Quartus |
-| [Lab 05](#lab-05--vending-machine-design) | Vending machine FSM | Quartus |
+| [Lab 05](#lab-05--vending-machine-design) | Parking fee machine FSM | Quartus |
 | [Lab Test 1](#lab-test-1) | Code converter and priority encoder | Quartus |
 | [Lab Test 2](#lab-test-2) | Vending machine FSM and sequence detector | Quartus |
 
@@ -63,9 +63,18 @@ Structural (gate-level) Verilog and simulation in Quartus.
 
 ## Lab 03 – Multiplexers, Encoders, Decoders, and Counters
 
-Behavioral Verilog with `if-else` and `case` statements, and blocking (`=`)
-vs. non-blocking (`<=`) assignments. This folder contains the lab materials
-only.
+Behavioral Verilog with `if-else`, `case`, and `casex` statements, and
+blocking (`=`) vs. non-blocking (`<=`) assignments. These solutions were
+written after the course and verified in simulation.
+
+| Task | Description | Code |
+|------|-------------|------|
+| Class Work 1 | 8-to-1 multiplexer using a `case` statement | [cw1_mux_8to1.v](Lab03/cw1_mux_8to1.v) |
+| Class Work 2 | 4-to-2 priority encoder with priority 2 > 1 > 3 > 0, using `casex` | [cw2_priority_encoder_2130.v](Lab03/cw2_priority_encoder_2130.v) |
+| Class Work 3 | Down counter from 10 to 2 that wraps back to 10, with reset | [cw3_down_counter_10_to_2.v](Lab03/cw3_down_counter_10_to_2.v) |
+| Home Work 1 | 1-to-4 demultiplexer | [hw1_demux_1to4.v](Lab03/hw1_demux_1to4.v) |
+| Home Work 2 | 3-to-8 decoder | [hw2_decoder_3to8.v](Lab03/hw2_decoder_3to8.v) |
+| Home Work 3 | 4-bit up-down counter with reset | [hw3_up_down_counter.v](Lab03/hw3_up_down_counter.v) |
 
 [Assignment](Lab03/Lab03_Assignment.pdf) · [Slides](Lab03/Lab03_Slides.pdf)
 
@@ -79,14 +88,25 @@ only.
 
 ## Lab 05 – Vending Machine Design
 
-Designing a vending machine as an FSM in Verilog. This folder contains the
-lecture slides and the lab assessment question: a **parking fee collection
-machine** with four gates (bike Tk 10, car Tk 50, microbus Tk 80, truck
-Tk 120) that accepts Tk 0, 10, 20, 50, and 100, adds up the cash, confirms
-once the fee is reached, and returns the change. My Verilog solution to the
-same kind of problem is the vending machine in [Lab Test 2](#lab-test-2).
+Designing a vending machine as an FSM in Verilog. The assessment was a
+**parking fee collection machine** with four gates (bike Tk 10, car Tk 50,
+microbus Tk 80, truck Tk 120) that accepts Tk 0, 10, 20, 50, and 100,
+adds up the cash, confirms once the fee is reached, and returns the change.
+This solution was written after the course and verified in simulation.
 
-[Assessment question](Lab05/Lab05_Assessment_SetA.pdf) · [Slides](Lab05/Lab05_Slides.pdf)
+| Signal | Minimum bits | Reason |
+|--------|--------------|--------|
+| `cash_in` | 3 | 5 accepted inputs |
+| `PV` (fee) | 7 | Largest fee is 120 |
+| `MV` (money collected) | 8 | Largest total is 110 + 100 = 210 |
+| `return_money` | 7 | Largest change is 90 |
+
+| Test | Inputs | Result |
+|------|--------|--------|
+| Car (gate 2) | Tk 20, 20, 20 | `confirm` = 1 on the third input, Tk 10 returned |
+| Truck (gate 4) | Tk 50, 100 | `confirm` = 1 on the second input, Tk 30 returned |
+
+Code: [parking_fee_machine.v](Lab05/parking_fee_machine.v) · [Assessment question](Lab05/Lab05_Assessment_SetA.pdf) · [Slides](Lab05/Lab05_Slides.pdf)
 
 ## Lab Test 1
 
