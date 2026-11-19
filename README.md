@@ -1,6 +1,6 @@
 # CSE460 – VLSI Design Lab (BRAC University)
 
-Lab work from CSE460 (VLSI Design) at BRAC University, Spring 2026. Starts
+Lab work from CSE460 : VLSI Design (Spring 2026) at BRAC University, Spring 2026. Starts
 with transistor-level CMOS circuit design in **DSCH2**, then moves to
 digital design in **Verilog HDL**, simulated with **Altera Quartus**:
 gate-level modeling, combinational circuits, and finite state machines.
